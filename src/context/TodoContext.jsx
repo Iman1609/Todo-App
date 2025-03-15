@@ -1,26 +1,26 @@
 import { createContext, useContext, useState } from "react";
 
-// Create Context
+
 const TodoContext = createContext();
 
-// Context Provider
-export const TodoProvider = ({ children }) => {
-  const [todos, setTodos] = useState([]); // Todo list state
-  const [searchQuery, setSearchQuery] = useState(""); // Search state
-  const [filter, setFilter] = useState("ALL"); // Filter state
-  const [darkMode, setDarkMode] = useState(false); // Dark mode state
 
-  // Add Todo
+export const TodoProvider = ({ children }) => {
+  const [todos, setTodos] = useState([]); 
+  const [searchQuery, setSearchQuery] = useState(""); 
+  const [filter, setFilter] = useState("ALL"); 
+  const [darkMode, setDarkMode] = useState(false); 
+
+
   const addTodo = (task) => {
     setTodos([...todos, { id: Date.now(), task, completed: false }]);
   };
 
-  // Delete Todo
+
   const deleteTodo = (id) => {
     setTodos(todos.filter((todo) => todo.id !== id));
   };
 
-  // Toggle Todo Completion
+ 
   const toggleComplete = (id) => {
     setTodos(
       todos.map((todo) =>
@@ -29,7 +29,7 @@ export const TodoProvider = ({ children }) => {
     );
   };
 
-  // Filter Todos based on Search and Filter
+
   const filteredTodos = todos
     .filter((todo) =>
       todo.task.toLowerCase().includes(searchQuery.toLowerCase())
@@ -40,7 +40,7 @@ export const TodoProvider = ({ children }) => {
       return true; // "ALL"
     });
 
-  // Toggle Dark Mode
+
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
   };
